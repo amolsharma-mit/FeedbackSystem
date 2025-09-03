@@ -1,0 +1,18 @@
+START
+ program="WiproTalentNext-2025"
+ phase="III"
+ program.collectFeedbackFromAllStudents(phase)
+ START
+  for(student in students)
+   	program.collectFeedbackFromStudent(phase,student)
+	loadQuestionsFromFile(questions.txt)
+	takeFeedback(student)
+	START
+	  giveFeedback(questions)
+	  for question in questions
+		answers = answers+Answer(question,response)
+	  feedback=Feedback(student,answers)
+	  feedback.writeFeedbackToFile()
+	END
+  END
+END
