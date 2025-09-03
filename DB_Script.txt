@@ -1,0 +1,77 @@
+-- Table: TrainingProgram
+CREATE TABLE TrainingProgram (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    startDate DATE,
+    endDate DATE,
+    curriculum TEXT
+);
+
+-- Table: Teacher
+CREATE TABLE Teacher (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+-- Table: Student
+CREATE TABLE Student (
+    rollNo INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+-- Table: Question
+CREATE TABLE Question (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL
+);
+
+-- Table: FeedbackPhase
+CREATE TABLE FeedbackPhase (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sessionDate DATE NOT NULL,
+    phase TEXT NOT NULL,
+    programId INTEGER NOT NULL,
+    FOREIGN KEY (programId) REFERENCES TrainingProgram(id)
+);
+
+-- Junction Table: Teacher_Program (Many-to-Many)
+CREATE TABLE Teacher_Program (
+    teacherId INTEGER NOT NULL,
+    programId INTEGER NOT NULL,
+    PRIMARY KEY (teacherId, programId),
+    FOREIGN KEY (teacherId) REFERENCES Teacher(id),
+    FOREIGN KEY (programId) REFERENCES TrainingProgram(id)
+);
+
+-- Junction Table: Student_Program (Many-to-Many)
+CREATE TABLE Student_Program (
+    rollNo INTEGER NOT NULL,
+    programId INTEGER NOT NULL,
+    PRIMARY KEY (rollNo, programId),
+    FOREIGN KEY (rollNo) REFERENCES Student(rollNo),
+    FOREIGN KEY (programId) REFERENCES TrainingProgram(id)
+);
+
+-- Junction Table: FeedbackPhase_Question (Many-to-Many)
+CREATE TABLE FeedbackPhase_Question (
+    phaseId INTEGER NOT NULL,
+    questionId INTEGER NOT NULL,
+    PRIMARY KEY (phaseId, questionId),
+    FOREIGN KEY (phaseId) REFERENCES FeedbackPhase(id),
+    FOREIGN KEY (questionId) REFERENCES Question(id)
+);
+
+-- Table: Feedback (Responses)
+CREATE TABLE Feedback (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    phaseId INTEGER NOT NULL,
+    rollNo INTEGER NOT NULL,
+    questionId INTEGER NOT NULL,
+    response TEXT,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (phaseId) REFERENCES FeedbackPhase(id),
+    FOREIGN KEY (rollNo) REFERENCES Student(rollNo),
+    FOREIGN KEY (questionId) REFERENCES Question(id),
+    UNIQUE (phaseId, rollNo, questionId) -- prevent multiple submissions
+);
+
