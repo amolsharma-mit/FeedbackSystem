@@ -4,7 +4,6 @@ CREATE TABLE TrainingProgram (
     name TEXT NOT NULL,
     startDate DATE,
     endDate DATE,
-    curriculum TEXT
 );
 
 -- Table: Teacher

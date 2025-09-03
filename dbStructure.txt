@@ -1,21 +1,35 @@
 TrainingProgram
-(id,name,startDate,
-endDate,curriculum)
+(id, name, startDate, endDate)
+
+Module
+(id, name, programId)
+
+CurriculumTopic
+(id, name, moduleId)
+
 Teacher
-(id,name)
+(id, name)
+
 Teacher_Program
-(teacherId,programId)
-Student_Program
-(rollNo,programId)
+(teacherId, programId)
+
 Student
-(rollNo,name)
+(rollNo, name)
+
+Student_Program
+(rollNo, programId)
+
+QuestionCategory
+(id, name)
+
 Question
-(id,text)
+(id, text, categoryId)
+
 FeedbackPhase
-(id,sessionDate,phase,
-programId)
+(id, sessionDate, phase, programId)
+
 FeedbackPhase_Question
-(phaseId,QuestionId)
+(phaseId, questionId)
+
 Feedback
-(id,phaseId,rollNo,
-questionId,response)
+(id, phaseId, rollNo, questionId, response)
