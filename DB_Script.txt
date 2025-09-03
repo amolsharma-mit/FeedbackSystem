@@ -19,11 +19,20 @@ CREATE TABLE Student (
     name TEXT NOT NULL
 );
 
+-- Table: QuestionCategory
+CREATE TABLE QuestionCategory (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
 -- Table: Question
 CREATE TABLE Question (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    text TEXT NOT NULL
+    text TEXT NOT NULL,
+    categoryId INTEGER NOT NULL,
+    FOREIGN KEY (categoryId) REFERENCES QuestionCategory(id)
 );
+
 
 -- Table: FeedbackPhase
 CREATE TABLE FeedbackPhase (
@@ -73,5 +82,21 @@ CREATE TABLE Feedback (
     FOREIGN KEY (rollNo) REFERENCES Student(rollNo),
     FOREIGN KEY (questionId) REFERENCES Question(id),
     UNIQUE (phaseId, rollNo, questionId) -- prevent multiple submissions
+);
+
+-- Table: Module
+CREATE TABLE Module (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    programId INTEGER NOT NULL,
+    FOREIGN KEY (programId) REFERENCES TrainingProgram(id)
+);
+
+-- Table: CurriculumTopic
+CREATE TABLE CurriculumTopic (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    moduleId INTEGER NOT NULL,
+    FOREIGN KEY (moduleId) REFERENCES Module(id)
 );
 
