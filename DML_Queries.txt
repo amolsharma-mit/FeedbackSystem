@@ -1,9 +1,27 @@
-insert into student values 
+insert into student values
+(1530024,'Sachin kumar'),
+(1539003,'Shahan Ansari'),
+(1540015,'Bhavna kashyap'),
 (1540022,'Ishika Jain'),
-(100110,'Sonu Kumar'), 
-(100121,'Vanshika Saxena'),
 (1540023,'Ishika Tyagi'),
-(1540061,'Vipul Pratap Singh');
+(1540026,'Kundan Kumar'), 
+(1540028,'Kushagra Rastogi'),
+(1540038,'Neeraj kumar'), 
+(1540049,'Santosh Kumar'), 
+(1540060,'Vikash Kumar'),
+(1549005,'Md Talib Hussain'), 
+(100009,'ADITYA KUMAR'),
+(100043,'Gaurav Mishra'),
+(100061,'Manish Kumar Maurya'),
+(100076,'Pallavi kumari'), 
+(100083,'Priyansh'),
+(100095,'Sagar Dabas'),
+(100110,'Sonu Kumar'), 
+(100121,'Vanshika Saxena'), 
+(109007,'Saif Ahmad'),
+(310013,'Ayushi Sharma'),
+(1540061,'Vipul Pratap Singh'),
+(100052,'Karan Kumar'); 
 
 insert into trainingprogram values (1,'Wipro TalentNext 2025','2025-06-23', '2025-10-31');
 
